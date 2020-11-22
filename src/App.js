@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Route, BrowserRouter as Router, Switch, Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
-function App() {
+//firebase
+import firebase from "firebase/app";
+import "firebase/auth";
+
+//components
+import Home from "./Pages/Home";
+import Signin from "./Pages/Signin";
+import Signup from "./Pages/Signup";
+import PageNotFound from "./Pages/PageNotFound";
+import { UserContext } from "./Context/UserContext";
+import Footer from "./Layouts/Footer";
+import Header from "./Layouts/Header";
+import firebaseConfig from "./Config/FirebaseConfig";
+
+//init firebase
+firebase.initializeApp(firebaseConfig);
+
+const App = () => {
+  const [user, setUser] = useState(null);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ToastContainer />
+      <UserContext.Provider value={{ user, setUser }}>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/signin" component={Signin} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="*" component={PageNotFound} />
+        </Switch>
+        <Footer />
+      </UserContext.Provider>
+    </Router>
   );
-}
+};
 
 export default App;
