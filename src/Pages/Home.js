@@ -32,7 +32,7 @@ const Home = () => {
     }
   };
   if (!context.user?.uid) {
-    return <Redirect to="/signin" />;
+    return <Redirect to="/signup" />;
   }
   return (
     <Container className="mb-3">

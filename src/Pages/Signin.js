@@ -17,7 +17,7 @@ import firebase from "firebase/app";
 import { UserContext } from "../Context/UserContext";
 import { Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
-
+import { Link } from "react-router-dom";
 const Signin = () => {
   const context = useContext(UserContext);
 
@@ -93,6 +93,9 @@ const Signin = () => {
                   Sign In
                 </Button>
               </CardFooter>
+              <span className="p-5">
+                Don't Have an Account <Link to="/signup">Sign Up</Link> Here
+              </span>
             </Form>
           </Card>
         </Col>

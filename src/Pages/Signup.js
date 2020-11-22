@@ -15,7 +15,7 @@ import {
 } from "reactstrap";
 import firebase from "firebase/app";
 import { UserContext } from "../Context/UserContext";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Signup = () => {
@@ -93,6 +93,9 @@ const Signup = () => {
                   Sign In
                 </Button>
               </CardFooter>
+              <span className="p-5">
+                Already registered <Link to="/signin">Sign in</Link> Here
+              </span>
             </Form>
           </Card>
         </Col>
